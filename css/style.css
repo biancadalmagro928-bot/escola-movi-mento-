@@ -1,19 +1,22 @@
 /* =========================================================
    Escola Movimento — Design Tokens
-   Primária: Laranja | Secundária: Rosa
+   Sweet Pink / Shocking Orange / Sunset
    ========================================================= */
 :root {
-  --color-primary: #F2542D;      /* laranja */
-  --color-primary-dark: #C93F1E;
-  --color-secondary: #E8368F;    /* rosa */
-  --color-secondary-dark: #C21F73;
+  --color-primary: #F0563A;      /* shocking orange */
+  --color-primary-dark: #C43F26;
+  --color-secondary: #FF9DB1;    /* sweet pink */
+  --color-secondary-dark: #E56C87;
+  --color-sunset: #FAD3A8;       /* sunset peach */
   --color-ink: #2B1B2E;          /* texto escuro, tom ameixa */
-  --color-cream: #FFF6F0;        /* fundo claro */
-  --color-cream-alt: #FBEAE0;
   --color-white: #FFFFFF;
+  --color-paper: #FFFDFB;        /* base quase-branca, sem tom creme */
 
-  --font-display: "Fraunces", serif;
+  --font-display: "Bagel Fat One", cursive;
   --font-body: "Work Sans", sans-serif;
+
+  --hard-shadow: 7px 7px 0 rgba(43,27,46,0.9);
+  --hard-shadow-sm: 5px 5px 0 rgba(43,27,46,0.9);
 }
 
 html { scroll-behavior: smooth; }
@@ -21,32 +24,40 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-body);
   color: var(--color-ink);
-  background-color: var(--color-cream);
+  background-color: var(--color-paper);
   padding-top: 78px;
 }
 
 h1, h2, h3, h4, .display-font {
   font-family: var(--font-display);
   color: var(--color-ink);
+  letter-spacing: 0.01em;
 }
 
 a { color: var(--color-primary-dark); }
 a:hover { color: var(--color-secondary-dark); }
 
 .section { padding: 5.5rem 0; }
-.section-alt { background-color: var(--color-cream-alt); }
 
-.eyebrow {
-  font-family: var(--font-body);
-  font-weight: 600;
-  color: var(--color-secondary);
-  letter-spacing: 0.02em;
-}
+/* Color-block sections — alternando laranja / pêssego / rosa / tinta,
+   ao invés de um fundo bege único do início ao fim. */
+.block-orange   { background-color: var(--color-primary); }
+.block-sunset   { background-color: var(--color-sunset); color: var(--color-ink); }
+.block-pink     { background-color: var(--color-secondary); color: var(--color-ink); }
+.block-ink      { background-color: var(--color-ink); }
+.panel-sunset   { background-color: var(--color-sunset); border-radius: 24px; }
+
+/* Uso explícito por elemento (evita "vazar" branco para dentro de cards
+   brancos aninhados nas seções coloridas). */
+.on-color-light { color: rgba(255,255,255,0.92) !important; }
+
+.text-danger { color: var(--color-primary) !important; }
+.block-orange .text-danger, .block-ink .text-danger { color: var(--color-white) !important; }
 
 /* ---------- Navbar ---------- */
 .navbar-movimento {
-  background-color: var(--color-cream);
-  box-shadow: 0 1px 0 rgba(43,27,46,0.08);
+  background-color: var(--color-white);
+  border-bottom: 3px solid var(--color-ink);
 }
 .navbar-movimento .navbar-brand img { height: 40px; }
 .navbar-movimento .nav-link {
@@ -60,23 +71,30 @@ a:hover { color: var(--color-secondary-dark); }
 }
 .btn-orcamento {
   background-color: var(--color-primary);
-  border-color: var(--color-primary);
+  border: 2px solid var(--color-ink);
   color: var(--color-white);
-  font-weight: 600;
+  font-weight: 700;
+  box-shadow: var(--hard-shadow-sm);
+  transition: transform 0.12s ease;
 }
 .btn-orcamento:hover {
   background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
+  border-color: var(--color-ink);
   color: var(--color-white);
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 rgba(43,27,46,0.9);
 }
 .btn-outline-brand {
-  border-color: var(--color-ink);
+  border: 2px solid var(--color-ink);
   color: var(--color-ink);
   font-weight: 600;
 }
 .btn-outline-brand:hover {
   background-color: var(--color-ink);
   color: var(--color-white);
+}
+.block-orange .btn-outline-light, .block-ink .btn-outline-light {
+  border-width: 2px; font-weight: 700;
 }
 
 /* ---------- Hero / Carousel ---------- */
@@ -96,72 +114,86 @@ a:hover { color: var(--color-secondary-dark); }
   font-size: clamp(2.4rem, 5vw, 4rem);
   line-height: 1.05;
 }
-.hero-caption p { color: var(--color-cream-alt); font-size: 1.15rem; max-width: 34rem; }
-.hero-blob {
-  position: absolute; border-radius: 50%; opacity: 0.5; filter: blur(2px);
+.hero-caption .kicker {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 700;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-bottom: 0.9rem;
 }
+.hero-caption p { color: rgba(255,255,255,0.9); font-size: 1.15rem; max-width: 34rem; }
 
-/* ---------- Cards ---------- */
+/* ---------- Cards (estilo "adesivo", sem sombra difusa) ---------- */
 .card-servico {
-  border: none;
-  border-radius: 18px;
+  border: 3px solid var(--color-ink);
+  border-radius: 14px;
   overflow: hidden;
   background: var(--color-white);
-  box-shadow: 0 10px 30px rgba(43,27,46,0.08);
+  box-shadow: var(--hard-shadow);
   height: 100%;
 }
-.card-servico img, .card-servico .svg-wrap { height: 240px; object-fit: cover; width: 100%; }
+.card-servico img, .card-servico .svg-wrap { height: 240px; object-fit: cover; width: 100%; border-bottom: 3px solid var(--color-ink); }
 .card-servico .svg-wrap { display:flex; }
 .card-servico .svg-wrap svg { width:100%; height:100%; object-fit:cover; }
 .card-servico .card-body { padding: 1.6rem; }
 .card-servico .price {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: var(--color-primary-dark);
 }
 
 .card-profissional { text-align: center; }
 .card-profissional img {
-  width: 180px; height: 180px; border-radius: 50%;
+  width: 170px; height: 170px; border-radius: 50%;
   object-fit: cover; margin: 0 auto 1.2rem;
-  border: 5px solid var(--color-cream);
-  box-shadow: 0 8px 20px rgba(43,27,46,0.15);
+  border: 4px solid var(--color-ink);
+  box-shadow: var(--hard-shadow-sm);
 }
 
 .card-depoimento {
-  border: none; border-radius: 18px;
+  border: 3px solid var(--color-ink);
+  border-radius: 14px;
   background: var(--color-white);
-  box-shadow: 0 10px 30px rgba(43,27,46,0.06);
+  box-shadow: var(--hard-shadow-sm);
   height: 100%;
 }
-.card-depoimento img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
-.card-depoimento .quote-icon { color: var(--color-secondary); font-size: 1.6rem; }
+.card-depoimento img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-ink); }
+.card-depoimento .quote-icon { color: var(--color-primary); font-size: 1.6rem; }
 
 /* ---------- Accordion ---------- */
+.accordion-item { border: 2px solid var(--color-ink); margin-bottom: 0.75rem; border-radius: 10px !important; overflow: hidden; }
+.accordion-button {
+  font-weight: 700;
+}
 .accordion-button:not(.collapsed) {
-  background-color: var(--color-cream-alt);
-  color: var(--color-primary-dark);
+  background-color: var(--color-sunset);
+  color: var(--color-ink);
   box-shadow: none;
 }
 .accordion-button:focus { box-shadow: none; }
 
 /* ---------- Table ---------- */
+.table-horarios { border: 3px solid var(--color-ink); border-radius: 12px; overflow: hidden; }
 .table-horarios thead { background-color: var(--color-ink); color: var(--color-white); }
 .table-horarios td, .table-horarios th { vertical-align: middle; }
 
 /* ---------- Maps / Iframe ---------- */
 .map-frame {
-  width: 100%; height: 340px; border: 0; border-radius: 18px;
+  width: 100%; height: 340px; border: 3px solid var(--color-ink); border-radius: 14px;
 }
 
 /* ---------- Footer ---------- */
 footer.site-footer {
   background-color: var(--color-ink);
-  color: var(--color-cream-alt);
+  color: rgba(255,255,255,0.85);
   padding: 3rem 0 1.5rem;
+  border-top: 4px solid var(--color-primary);
 }
-footer.site-footer a { color: var(--color-cream-alt); }
-footer.site-footer a:hover { color: var(--color-primary); }
+footer.site-footer a { color: rgba(255,255,255,0.85); }
+footer.site-footer a:hover { color: var(--color-secondary); }
 footer.site-footer .footer-logo img { height: 36px; filter: brightness(0) invert(1); opacity: 0.9; }
 
 /* ---------- WhatsApp floating button ---------- */
@@ -169,25 +201,29 @@ footer.site-footer .footer-logo img { height: 36px; filter: brightness(0) invert
   position: fixed; right: 22px; bottom: 22px; z-index: 1050;
   background-color: #25D366; color: #fff; width: 58px; height: 58px;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem; box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  font-size: 1.6rem; border: 2px solid var(--color-ink);
+  box-shadow: 4px 4px 0 rgba(43,27,46,0.6);
 }
-.whatsapp-float:hover { color: #fff; transform: scale(1.06); }
+.whatsapp-float:hover { color: #fff; transform: translate(2px, 2px); box-shadow: 2px 2px 0 rgba(43,27,46,0.6); }
 
 /* ---------- Service detail page ---------- */
-.service-hero { background-color: var(--color-cream-alt); padding: 3rem 0; }
-.detail-photos img { border-radius: 16px; width: 100%; height: 260px; object-fit: cover; }
-.service-facts .fact { border-left: 3px solid var(--color-primary); padding-left: 1rem; margin-bottom: 1rem; }
-.ratio-video { border-radius: 16px; overflow: hidden; }
+.service-hero { background-color: var(--color-sunset); padding: 3rem 0; }
+.detail-photos img { border: 3px solid var(--color-ink); border-radius: 14px; width: 100%; height: 260px; object-fit: cover; }
+.service-facts .fact { border-left: 4px solid var(--color-primary); padding-left: 1rem; margin-bottom: 1rem; }
+.ratio-video { border: 3px solid var(--color-ink); border-radius: 14px; overflow: hidden; }
+.service-facts.bg-white { border: 3px solid var(--color-ink); box-shadow: var(--hard-shadow); }
 
 /* ---------- Section titles ---------- */
 .section-title { margin-bottom: 2.5rem; }
 .divider-dot {
   width: 46px; height: 6px; border-radius: 4px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  background: var(--color-primary);
   margin-bottom: 1rem;
 }
+.block-orange .divider-dot, .block-ink .divider-dot { background: var(--color-white); }
 
 @media (max-width: 768px) {
   body { padding-top: 64px; }
   .hero-carousel .carousel-item { height: 78vh; }
+  .card-servico, .card-depoimento { box-shadow: var(--hard-shadow-sm); }
 }
