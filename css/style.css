@@ -134,7 +134,7 @@ a:hover { color: var(--color-secondary-dark); }
   box-shadow: 0 10px 30px rgba(43,27,46,0.06);
   height: 100%;
 }
-.card-depoimento img { width: 56px; height: 56px; border-radius: 50%; }
+.card-depoimento img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
 .card-depoimento .quote-icon { color: var(--color-secondary); font-size: 1.6rem; }
 
 /* ---------- Accordion ---------- */
