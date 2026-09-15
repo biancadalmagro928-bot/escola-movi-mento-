@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+  <defs>
+    <linearGradient id="bgJazz2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F9A8D4"/>
+      <stop offset="100%" stop-color="#E8368F"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="750" fill="url(#bgJazz2)"/>
+  <circle cx="120" cy="150" r="100" fill="#F2542D" opacity="0.35"/>
+  <circle cx="520" cy="600" r="150" fill="#2B1B2E" opacity="0.18"/>
+  <circle cx="80" cy="600" r="60" fill="#FFF6F0" opacity="0.5"/>
+  <!-- dancer silhouette, arched jazz pose -->
+  <g fill="#2B1B2E">
+    <circle cx="330" cy="200" r="30"/>
+    <path d="M330 232c-9 0-17 5-20 14l-70 190c-4 10 1 22 11 25 10 4 22-1 26-11l45-122 6 96-90 130c-6 9-4 22 6 28 9 6 22 3 28-6l82-118 16 26c4 6 10 9 17 9h64c11 0 20-9 20-20s-9-20-20-20h-52l-35-56 8-70 18 58c3 10 15 16 25 12 10-3 15-15 12-25l-32-95c-3-9-12-16-22-16h-8l-34 22z"/>
+    <path d="M254 258l-64-52c-8-7-21-6-28 3-7 9-6 21 3 28l70 56z"/>
+  </g>
+</svg>
